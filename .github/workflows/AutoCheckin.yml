@@ -17,17 +17,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: github.event.repository.owner.id == github.event.sender.id  # 自己点的 start
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-    - name: Set up Python #安装python
-      uses: actions/setup-python@v4
+      uses: actions/checkout@v2
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
-    - name: Install requirements #安装轮子
+        
+    - name: Install requirements
       run: |
         pip install -r requirements.txt
+        
     - name: Run script
       env:
         MHYY_CONFIG: ${{ secrets.MHYY_SECRET }}
